@@ -25,6 +25,7 @@ import "assets/scss/argon-dashboard-react.scss";
 
 import AdminLayout from "layouts/Admin.js";
 import AuthLayout from "layouts/Auth.js";
+import DemoBanner from "components/DemoBanner.js";
 
 let changestate = (name,word) => {
   state.user.username = name;
@@ -47,12 +48,15 @@ let state ={
 }
 ReactDOM.render(
   
-  <BrowserRouter>
-    <Switch>
-      <Route path="/admin" render={props => <AdminLayout user={state.user}  {...props} />} />
-      <Route path="/auth" render={props => <AuthLayout user={state.user} changestate={changestate} {...props} />} />
-      <Redirect from="/" to="/auth/login" />
-    </Switch>
-  </BrowserRouter>,
+  <>
+    <DemoBanner />
+    <BrowserRouter>
+      <Switch>
+        <Route path="/admin" render={props => <AdminLayout user={state.user}  {...props} />} />
+        <Route path="/auth" render={props => <AuthLayout user={state.user} changestate={changestate} {...props} />} />
+        <Redirect from="/" to="/auth/login" />
+      </Switch>
+    </BrowserRouter>
+  </>,
   document.getElementById("root")
 );
